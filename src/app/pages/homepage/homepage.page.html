@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-img src="assets/logo01.png" slot="end" class="pages-logo"></ion-img>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <div *ngFor="let item of items | async">
+
+    <ion-card>
+      <img src="{{item.foto}}" alt="{{item.nome}}">
+      <ion-card-header>
+        <ion-card-title>{{item.name}}</ion-card-title>
+        <ion-chip>
+          <ion-label>{{item.nameconf}}</ion-label>
+        </ion-chip>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>{{item.description}}</ion-card-content>
+      <ion-button expand="block" (click)="openWatsapp('989898989898')" class="button_green">
+        <ion-icon name="logo-whatsapp" class="whatsapp"> </ion-icon>WhatsApp
+      </ion-button>
+    </ion-card>
+  </div>
+</ion-content>

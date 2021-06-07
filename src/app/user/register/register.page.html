@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- Acesso ao menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Título da página -->
+    <ion-title>Cadastre-se</ion-title>
+
+    <!-- Logotipo -->
+    <ion-img src="assets/logo01.png" slot="end" class="pages-logo"></ion-img>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-no-padding ion-padding-horizontal">
+
+  <h2>Cadastre-se</h2>
+  <p>Preencha todos os campos com atenção para se cadastrar no aplicativo. Você será responsável caso preencha
+    informações incorretas ou inverídicas.</p>
+  <p class="ion-text-center">
+    <ion-text color="danger"><small>Todos os campos são obrigatórios.</small></ion-text>
+  </p>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registerSend()">
+
+    <ion-list lines="full" class="ion-no-padding">
+
+      <!-- Campo nome (name) -->
+      <ion-item>
+        <ion-label for="name" position="floating" color="primary">
+          Nome:
+          <ion-text color="danger" *ngIf="registerForm.controls.name.errors">
+            <small *ngIf="registerForm.controls.name.errors.required">* Obrigatório</small>
+            <small *ngIf="registerForm.controls.name.errors.minlength">* Inválido</small>
+          </ion-text>
+        </ion-label>
+        <ion-input type="text" id="name" name="name" formControlName="name"></ion-input>
+      </ion-item>
+
+      <!-- Campo e-mail (email) -->
+      <ion-item>
+        <ion-label for="email" position="floating" color="primary">
+          E-mail:
+          <ion-text color="danger" *ngIf="registerForm.controls.email.errors">
+            <small *ngIf="registerForm.controls.email.errors.required">* Obrigatório</small>
+            <small *ngIf="registerForm.controls.email.errors.email">* Inválido</small>
+          </ion-text>
+        </ion-label>
+        <ion-input type="text" id="email" name="email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <!-- Campo 'Whatsapp' (whatsapp) -->
+      <ion-item>
+        <ion-label for="whatsapp" position="floating" color="primary">
+          Whatsapp:
+          <ion-text color="danger" *ngIf="registerForm.controls.whatsapp.errors">
+            <small *ngIf="registerForm.controls.whatsapp.errors.required">* Obrigatório</small>
+            <small *ngIf="registerForm.controls.whatsapp.errors.pattern">* Inválido</small>
+          </ion-text>
+        </ion-label>
+        <ion-input type="text" id="whatsapp" name="whatsapp" formControlName="whatsapp"></ion-input>
+      </ion-item>
+
+      
+      <!-- Campo endereço (address) -->
+      <ion-item>
+        <ion-label for="address" position="floating" color="primary">
+          Endereço:
+          <ion-text color="danger" *ngIf="registerForm.controls.address.errors">
+            <small *ngIf="registerForm.controls.address.errors.required">* Obrigatório</small>
+          </ion-text>
+        </ion-label>
+        <ion-textarea type="text" id="address" name="address" formControlName="address" autoGrow="true"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button class="ion-margin-vertical" type="submit" expand="block" [disabled]="registerForm.invalid">Cadastrar
+    </ion-button>
+
+  </form>
+
+</ion-content>

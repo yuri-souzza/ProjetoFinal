@@ -1,0 +1,106 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" id="mymenu">
+      <ion-content>
+        <ion-list id="inbox-list">
+
+          <ion-img src="assets/logo01.png" class="menu-logo"></ion-img>
+
+          <ion-list-header class="ion-text-center"></ion-list-header>
+          <ion-note></ion-note>
+          
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/homepage" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" name="newspaper-outline"></ion-icon>
+              <ion-label>HomePage</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/user/profile" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="person-add-outline"></ion-icon>
+              <ion-label>Perfil</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+
+          
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/portifolio" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" name="images"></ion-icon>
+              <ion-label>portfolio</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/contacts" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="chatbox-ellipses-outline"></ion-icon>
+              <ion-label>Faça Contato</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/about" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              <ion-label>Sobre</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+        </ion-list>
+
+        <ion-list>
+
+          <!-- Se tem usuário logado -->
+
+          <div *ngIf="auth.user | async as user; else showLogin">
+
+            <ion-menu-toggle auto-hide="false">
+
+              <ion-item routerDirection="root" routerLink="/user/profile" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-avatar slot="start">
+                <ion-img src="{{ user.photoURL }}" alt="Ver perfil de {{ user.displayName }}"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                {{ user.displayName }}
+                <div><small>{{ user.email }}</small></div>                
+              </ion-label>
+            </ion-item>
+
+            </ion-menu-toggle>
+
+          </div>
+
+          <!-- Mostra login se usuário não está logado -->
+          <ng-template #showLogin>
+
+            <ion-menu-toggle auto-hide="false">
+
+              <ion-item routerDirection="root" routerLink="/user/login" lines="none" detail="false"
+                routerLinkActive="selected">
+                <ion-avatar slot="start">
+                  <ion-img src="assets/user.png" alt="Faça login"></ion-img>
+                </ion-avatar>
+                <ion-label>Entrar / Login</ion-label>
+              </ion-item>
+
+            </ion-menu-toggle>
+
+          </ng-template>
+
+        </ion-list>
+
+      </ion-content>
+
+      <div class="ion-text-center ion-padding">
+        <small>&copy; Copyright 2021 Team 2019.3.</small>
+      </div>
+
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
